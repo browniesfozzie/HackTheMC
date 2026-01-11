@@ -237,12 +237,13 @@ void MinecraftAccount::fillSession(AuthSessionPtr session)
 {
     static const QRegularExpression s_removeChars("[{}-]");
     if (ownsMinecraft() && !hasProfile()) {
-    session->status = AuthSession::RequiresProfileSetup;
+        session->status = AuthSession::RequiresProfileSetup;
     } else {
-    if (session->wants_online) {
-        session->status = AuthSession::PlayableOnline;
-    } else {
-        session->status = AuthSession::PlayableOffline;
+        if (session->wants_online) {
+            session->status = AuthSession::PlayableOnline;
+        } else {
+            session->status = AuthSession::PlayableOffline;
+        }
     }
 
     // volatile auth token
