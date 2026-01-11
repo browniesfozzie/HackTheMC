@@ -116,6 +116,8 @@ class MinecraftAccount : public QObject, public Usable {
 
     AccountType accountType() const noexcept { return data.type; }
 
+    bool ownsMinecraft() const { return true; }
+
     bool hasProfile() const { return data.profileId().size() != 0; }
 
     QString typeString() const
